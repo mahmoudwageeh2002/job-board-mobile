@@ -96,7 +96,7 @@ class AuthService {
       "accessToken",
       "refreshToken",
       "user",
-      "applications",
+      "@job_applications",
     ]);
   }
 

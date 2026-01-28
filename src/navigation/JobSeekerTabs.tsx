@@ -77,8 +77,6 @@ export default function JobSeekerTabs() {
           borderTopColor: Colors.border,
           paddingBottom: 5,
           paddingTop: 5,
-          height: 60,
-          marginBottom: 15,
         },
         tabBarActiveTintColor: Colors.tabIconSelected,
         tabBarInactiveTintColor: Colors.tabIconDefault,

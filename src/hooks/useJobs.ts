@@ -24,6 +24,29 @@ export const useJob = (id: string) => {
   });
 };
 
+// Admin hooks
+export const useAdminJobs = () => {
+  return useQuery({
+    queryKey: ["admin", "jobs"],
+    queryFn: () => jobsService.getAdminJobs(),
+  });
+};
+
+export const useAdminJob = (id: string) => {
+  return useQuery({
+    queryKey: ["admin", "job", id],
+    queryFn: () => jobsService.getAdminJobById(id),
+    enabled: !!id,
+  });
+};
+
+export const useUsers = () => {
+  return useQuery({
+    queryKey: ["users"],
+    queryFn: () => jobsService.getUsers(),
+  });
+};
+
 export const useApplications = () => {
   return useQuery({
     queryKey: ["applications"],

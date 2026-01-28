@@ -92,9 +92,11 @@ export default function LoginScreen({ navigation }: any) {
             style={[
               styles.loginButton,
               isLoading && styles.loginButtonDisabled,
+              !password && styles.loginButtonDisabled,
+              !username && styles.loginButtonDisabled,
             ]}
             onPress={handleLogin}
-            disabled={isLoading}
+            disabled={isLoading || !username || !password}
           >
             {isLoading ? (
               <ActivityIndicator color={Colors.textWhite} />

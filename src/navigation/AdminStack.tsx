@@ -1,28 +1,17 @@
 import { Ionicons } from "@expo/vector-icons";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import React, { useContext } from "react";
-import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import React from "react";
+import { StyleSheet } from "react-native";
 import { Colors, Spacing } from "../constants/theme";
-import { AuthContext } from "../context/AuthContext";
+import JobDetailsScreen from "../screens/admin/JobDetailsScreen";
 import JobsManagementScreen from "../screens/admin/JobsManagementScreen";
 import UsersManagementScreen from "../screens/admin/UsersManagementScreen";
 
 const Tab = createBottomTabNavigator();
+const Stack = createNativeStackNavigator();
 
-function LogoutButton() {
-  const { logout, user } = useContext(AuthContext);
-
-  return (
-    <View style={styles.headerRight}>
-      <Text style={styles.userName}>Admin: {user?.firstName}</Text>
-      <TouchableOpacity onPress={logout} style={styles.logoutButton}>
-        <Ionicons name="log-out-outline" size={24} color={Colors.error} />
-      </TouchableOpacity>
-    </View>
-  );
-}
-
-export default function AdminStack() {
+function AdminTabs() {
   return (
     <Tab.Navigator
       screenOptions={{
@@ -37,15 +26,11 @@ export default function AdminStack() {
           fontWeight: "600",
           fontSize: 18,
         },
-        headerRight: () => <LogoutButton />,
         tabBarStyle: {
           backgroundColor: Colors.tabBackground,
           borderTopWidth: 1,
           borderTopColor: Colors.border,
-          paddingBottom: 15,
           paddingTop: 5,
-          height: 60,
-          marginBottom: 15,
         },
         tabBarActiveTintColor: Colors.tabIconSelected,
         tabBarInactiveTintColor: Colors.tabIconDefault,
@@ -62,7 +47,7 @@ export default function AdminStack() {
           tabBarIcon: ({ color, size }) => (
             <Ionicons name="briefcase-outline" size={size} color={color} />
           ),
-          title: "Jobs",
+          headerShown: false,
         }}
       />
       <Tab.Screen
@@ -72,10 +57,30 @@ export default function AdminStack() {
           tabBarIcon: ({ color, size }) => (
             <Ionicons name="people-outline" size={size} color={color} />
           ),
-          title: "Users",
+          headerShown: false,
         }}
       />
     </Tab.Navigator>
+  );
+}
+
+export default function AdminStack() {
+  return (
+    <Stack.Navigator
+      screenOptions={{
+        headerShown: false,
+      }}
+    >
+      <Stack.Screen name="AdminTabs" component={AdminTabs} />
+      <Stack.Screen
+        name="JobDetails"
+        component={JobDetailsScreen}
+        options={{
+          headerShown: false,
+          animation: "slide_from_right",
+        }}
+      />
+    </Stack.Navigator>
   );
 }
 
