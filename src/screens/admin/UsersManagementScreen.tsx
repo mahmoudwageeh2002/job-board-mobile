@@ -1,45 +1,36 @@
 import React, { useContext } from "react";
-import {
-  ScrollView,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-} from "react-native";
+import { ScrollView, StyleSheet, Text, View } from "react-native";
 import { BorderRadius, Colors, Spacing } from "../../constants/theme";
 import { AuthContext } from "../../context/AuthContext";
 
-export default function JobsManagementScreen() {
+export default function UsersManagementScreen() {
   const { user } = useContext(AuthContext);
 
   return (
     <View style={styles.container}>
       <View style={styles.header}>
-        <Text style={styles.headerTitle}>Jobs Management</Text>
-        <Text style={styles.headerSubtitle}>Manage all job postings</Text>
+        <Text style={styles.headerTitle}>Users Management</Text>
+        <Text style={styles.headerSubtitle}>Manage all users</Text>
       </View>
 
       <ScrollView style={styles.content}>
         <View style={styles.statsContainer}>
           <View style={styles.statCard}>
-            <Text style={styles.statNumber}>24</Text>
-            <Text style={styles.statLabel}>Active Jobs</Text>
+            <Text style={styles.statNumber}>342</Text>
+            <Text style={styles.statLabel}>Total Users</Text>
           </View>
           <View style={styles.statCard}>
-            <Text style={styles.statNumber}>156</Text>
-            <Text style={styles.statLabel}>Applications</Text>
+            <Text style={styles.statNumber}>128</Text>
+            <Text style={styles.statLabel}>Active Today</Text>
           </View>
         </View>
 
-        <TouchableOpacity style={styles.createButton}>
-          <Text style={styles.createButtonText}>+ Create New Job</Text>
-        </TouchableOpacity>
-
-        <View style={styles.jobsList}>
-          <Text style={styles.sectionTitle}>Recent Jobs</Text>
-          {/* TODO: Add job list */}
+        <View style={styles.usersList}>
+          <Text style={styles.sectionTitle}>All Users</Text>
           <View style={styles.emptyState}>
-            <Text style={styles.emptyStateText}>Jobs will appear here</Text>
+            <Text style={styles.emptyStateText}>
+              Users list will appear here
+            </Text>
           </View>
         </View>
       </ScrollView>
@@ -96,19 +87,7 @@ const styles = StyleSheet.create({
     fontSize: 14,
     color: Colors.textSecondary,
   },
-  createButton: {
-    backgroundColor: Colors.primary,
-    margin: Spacing.md,
-    padding: Spacing.md,
-    borderRadius: BorderRadius.xl,
-    alignItems: "center",
-  },
-  createButtonText: {
-    color: Colors.textWhite,
-    fontSize: 16,
-    fontWeight: "600",
-  },
-  jobsList: {
+  usersList: {
     padding: Spacing.md,
   },
   sectionTitle: {
